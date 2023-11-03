@@ -82,6 +82,15 @@ export default function Dashboard() {
                 <Text textStyle="lg" fontWeight="medium">
                   Webhook List
                 </Text>
+                <Button
+                  colorScheme="green"
+                  size="sm"
+                  onClick={() => {
+                    router.push(`/dashboard/${router.query.server}/create`);
+                  }}
+                >
+                  Create Webhook
+                </Button>
               </Stack>
             </Box>
             <Box overflowX="auto">
