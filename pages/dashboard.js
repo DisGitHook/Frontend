@@ -31,10 +31,10 @@ export default function Dashboard() {
 
   const fetchInfo = () => {
     return fetch("https://disgithook-api.tomatenkuchen.com/servers", {
-      credentials: "include",
+      credentials: "same-origin",
     })
       .then((res) => res.json())
-      .then((d) => setData(d.servers));
+      .then((d) => setServers(d.servers));
   };
 
   useEffect(() => {
