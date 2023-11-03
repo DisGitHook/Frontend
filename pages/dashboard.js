@@ -1,9 +1,31 @@
 import Head from "next/head";
+import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { Box, Container, Heading, Stack, Text } from "@chakra-ui/react";
 import ServerList from "../components/ServerList";
+import { useRouter } from "next/router";
 
-export default function Privacy() {
+export default function Dashboard() {
+  const router = useRouter();
+  const { code } = router.query;
+
+  useEffect(() => {
+    if (code) {
+      fetch(`https://disgithook-api.tomatenkuchen.com/login?code=${code}`)
+        .then((response) => {})
+        .catch((error) => {
+          router.push("/");
+        });
+    } else {
+      const avatarCookie = document.cookie
+        .split("; ")
+        .find((cookie) => cookie.startsWith("avatar="));
+      if (!avatarCookie) {
+        router.push("/");
+      }
+    }
+  }, [code]);
+
   return (
     <div>
       <Head>

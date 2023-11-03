@@ -43,6 +43,20 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const avatarUrl = undefined;
 
+  const scope = ["identify", "guilds"].join(" ");
+
+  const OAUTH_QS = new URLSearchParams({
+    client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
+    redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI,
+    response_type: "code",
+    scope,
+  }).toString();
+
+  const OAUTH_URI = `https://discord.com/api/oauth2/authorize?${OAUTH_QS}`;
+  const redirectOAuth = () => {
+    window.location.href = OAUTH_URI;
+  };
+
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -92,7 +106,9 @@ export default function Navbar() {
                   </MenuList>
                 </>
               ) : (
-                <Button colorScheme="blue">Login with Discord</Button>
+                <Button colorScheme="blue" onClick={redirectOAuth}>
+                  Login with Discord
+                </Button>
               )}
             </Menu>
           </Flex>
