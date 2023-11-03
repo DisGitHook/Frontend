@@ -5,7 +5,6 @@ import {
   Box,
   Checkbox,
   HStack,
-  Icon,
   Table,
   Tbody,
   Td,
@@ -15,7 +14,7 @@ import {
   Button,
   Tr,
 } from "@chakra-ui/react";
-import { IoArrowDown } from "react-icons/io5";
+import Link from "next/link";
 
 export default function ServerList(props) {
   const { list } = props;
@@ -28,7 +27,6 @@ export default function ServerList(props) {
               <Checkbox />
               <HStack spacing="1">
                 <Text>Name</Text>
-                <Icon as={IoArrowDown} color="fg.muted" boxSize="4" />
               </HStack>
             </HStack>
           </Th>
@@ -40,7 +38,6 @@ export default function ServerList(props) {
           <Tr key={server.id}>
             <Td>
               <HStack spacing="3">
-                <Checkbox />
                 <Avatar
                   name={server.name}
                   src={`https://cdn.discordapp.com/icons/${server.id}/${server.icon}`}
@@ -55,9 +52,21 @@ export default function ServerList(props) {
             <Td>
               <HStack spacing="1">
                 {server.active ? (
-                  <Button colorScheme="blue">Manage Server</Button>
+                  <Button
+                    colorScheme="blue"
+                    as={Link}
+                    href={`/dashboard/${server.id}`}
+                  >
+                    Manage Server
+                  </Button>
                 ) : (
-                  <Button colorScheme="pink">Invite Bot</Button>
+                  <Button
+                    colorScheme="pink"
+                    as={"a"}
+                    href={`https://discord.com/api/oauth2/authorize?client_id=1168822115810672711&permissions=0&scope=bot&guild_id=${server.id}`}
+                  >
+                    Invite Bot
+                  </Button>
                 )}
               </HStack>
             </Td>
