@@ -84,7 +84,7 @@ export default function Dashboard() {
               </Stack>
             </Box>
             <Box overflowX="auto">
-              <WebhookList list={hooks} />
+              <WebhookList list={hooks} server={router.query.server} />
             </Box>
           </Stack>
         </Box>

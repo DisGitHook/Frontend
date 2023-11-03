@@ -15,7 +15,7 @@ import {
 import Swal from "sweetalert2";
 
 export default function WebhookList(props) {
-  const { list } = props;
+  const { list, server } = props;
   return (
     <Table>
       <Thead>
@@ -42,7 +42,7 @@ export default function WebhookList(props) {
                   colorScheme="green"
                   onClick={() => {
                     fetch(
-                      `https://disgithook-api.tomatenkuchen.com/servers/${router.query.server}/hooks/${hook.id}/regen`,
+                      `https://disgithook-api.tomatenkuchen.com/servers/${server}/hooks/${hook.id}/regen`,
                       {
                         method: "POST",
                         credentials: "include",
