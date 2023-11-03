@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import { Box, Container, Heading, Stack, Text } from "@chakra-ui/react";
 import ServerList from "../components/ServerList";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -17,9 +18,7 @@ export default function Dashboard() {
           router.push("/");
         });
     } else {
-      const avatarCookie = document.cookie
-        .split("; ")
-        .find((cookie) => cookie.startsWith("avatar="));
+      const avatarCookie = Cookies.get("avatar");
       if (!avatarCookie) {
         router.push("/");
       }
