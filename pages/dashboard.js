@@ -15,11 +15,9 @@ export default function Dashboard() {
       fetch(`https://disgithook-api.tomatenkuchen.com/login?code=${code}`, {
         credentials: "include",
       })
-        .then((response) => {
-          console.log(response);
-        })
+        .then((response) => {})
         .catch((error) => {
-          console.log(error);
+          router.push("/");
         });
     } else {
       const avatarCookie = Cookies.get("avatar");
@@ -28,6 +26,18 @@ export default function Dashboard() {
       }
     }
   }, [code]);
+
+  const [servers, setServers] = useState([]);
+
+  const fetchInfo = () => {
+    return fetch("https://disgithook-api.tomatenkuchen.com/servers")
+      .then((res) => res.json())
+      .then((d) => setData(d.servers));
+  };
+
+  useEffect(() => {
+    fetchInfo();
+  }, []);
 
   return (
     <div>
@@ -82,7 +92,7 @@ export default function Dashboard() {
               </Stack>
             </Box>
             <Box overflowX="auto">
-              <ServerList />
+              <ServerList list={servers} />
             </Box>
           </Stack>
         </Box>

@@ -19,6 +19,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 
 const NavLink = (props) => {
@@ -42,6 +43,7 @@ const NavLink = (props) => {
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const router = useRouter();
   const avatarUrl = Cookies.get("avatar");
 
   const scope = ["identify", "guilds"].join(" ");
@@ -56,6 +58,16 @@ export default function Navbar() {
   const OAUTH_URI = `https://discord.com/api/oauth2/authorize?${OAUTH_QS}`;
   const redirectOAuth = () => {
     window.location.href = OAUTH_URI;
+  };
+
+  const logout = () => {
+    fetch(`https://disgithook-api.tomatenkuchen.com/logout`, {
+      credentials: "include",
+    })
+      .then((response) => {
+        router.push("/");
+      })
+      .catch((error) => {});
   };
 
   return (
@@ -96,9 +108,11 @@ export default function Navbar() {
                     <Avatar size={"sm"} src={avatarUrl} />
                   </MenuButton>
                   <MenuList>
-                    <MenuItem>Dashboard</MenuItem>
+                    <MenuItem as={Link} href={"/dashboard"}>
+                      Dashboard
+                    </MenuItem>
                     <MenuDivider />
-                    <MenuItem>Logout</MenuItem>
+                    <MenuItem onClick={logout}>Logout</MenuItem>
                   </MenuList>
                 </>
               ) : (
