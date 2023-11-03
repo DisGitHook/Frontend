@@ -2,12 +2,10 @@
 
 import {
   Avatar,
-  Badge,
   Box,
   Checkbox,
   HStack,
   Icon,
-  IconButton,
   Table,
   Tbody,
   Td,
@@ -17,7 +15,6 @@ import {
   Button,
   Tr,
 } from "@chakra-ui/react";
-import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import { IoArrowDown } from "react-icons/io5";
 
 export default function ServerList(props) {
