@@ -25,7 +25,10 @@ export default function Dashboard() {
       }
     )
       .then((res) => res.json())
-      .then((d) => setHooks(d.hooks));
+      .then((d) => setHooks(d.hooks))
+      .catch((error) => {
+        router.push("/");
+      });
   }, [router]);
 
   return (

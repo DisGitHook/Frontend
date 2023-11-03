@@ -12,6 +12,7 @@ import {
   Button,
   Tr,
 } from "@chakra-ui/react";
+import Swal from "sweetalert2";
 
 export default function WebhookList(props) {
   const { list } = props;
@@ -20,7 +21,6 @@ export default function WebhookList(props) {
       <Thead>
         <Tr>
           <Th>Name</Th>
-          <Th>URL</Th>
           <Th>Actions</Th>
         </Tr>
       </Thead>
@@ -37,7 +37,43 @@ export default function WebhookList(props) {
             </Td>
             <Td>
               <HStack spacing="1">
-                <Button colorScheme="blue">Edit Webhook</Button>
+                <Button colorScheme="blue">Edit</Button>
+                <Button
+                  colorScheme="green"
+                  onClick={() => {
+                    fetch(
+                      `https://disgithook-api.tomatenkuchen.com/servers/${router.query.server}/hooks/${hook.id}/regen`,
+                      {
+                        method: "POST",
+                        credentials: "include",
+                      }
+                    )
+                      .then((res) => res.json())
+                      .then((d) => {
+                        if (d.success) {
+                          Swal.fire({
+                            icon: "success",
+                            title: "Success!",
+                            text: "Webhook secret regenerated successfully!",
+                            input: "text",
+                            inputLabel: "New Secret",
+                            inputValue: d.secret,
+                          });
+                        } else {
+                          Swal.fire({
+                            icon: "error",
+                            title: "Error!",
+                            text: "An error occured while regenerating the webhook secret!",
+                          });
+                        }
+                      })
+                      .catch((error) => {
+                        router.push("/");
+                      });
+                  }}
+                >
+                  Regenerate Secret
+                </Button>
                 <Button colorScheme="red">Delete</Button>
               </HStack>
             </Td>
