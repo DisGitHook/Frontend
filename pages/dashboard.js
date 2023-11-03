@@ -30,7 +30,9 @@ export default function Dashboard() {
   const [servers, setServers] = useState([]);
 
   const fetchInfo = () => {
-    return fetch("https://disgithook-api.tomatenkuchen.com/servers")
+    return fetch("https://disgithook-api.tomatenkuchen.com/servers", {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((d) => setData(d.servers));
   };
