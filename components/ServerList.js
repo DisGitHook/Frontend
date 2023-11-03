@@ -3,7 +3,6 @@
 import {
   Avatar,
   Box,
-  Checkbox,
   HStack,
   Table,
   Tbody,
@@ -24,7 +23,6 @@ export default function ServerList(props) {
         <Tr>
           <Th>
             <HStack spacing="3">
-              <Checkbox />
               <HStack spacing="1">
                 <Text>Name</Text>
               </HStack>
