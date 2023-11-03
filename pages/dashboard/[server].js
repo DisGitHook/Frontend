@@ -18,6 +18,7 @@ export default function Dashboard() {
   const [hooks, setHooks] = useState([]);
 
   useEffect(() => {
+    if (!router.query.server) return;
     fetch(
       `https://disgithook-api.tomatenkuchen.com/servers/${router.query.server}/hooks`,
       {

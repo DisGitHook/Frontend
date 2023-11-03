@@ -16,6 +16,9 @@ import Swal from "sweetalert2";
 
 export default function WebhookList(props) {
   const { list, server } = props;
+  if (!list || !server) {
+    return <></>;
+  }
   return (
     <Table>
       <Thead>
@@ -87,11 +90,6 @@ export default function WebhookList(props) {
                       .then((res) => res.json())
                       .then((d) => {
                         if (d.success) {
-                          Swal.fire({
-                            icon: "success",
-                            title: "Success!",
-                            text: "Webhook deleted successfully!",
-                          });
                           window.location.reload();
                         } else {
                           Swal.fire({
