@@ -12,7 +12,9 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (code) {
-      fetch(`https://disgithook-api.tomatenkuchen.com/login?code=${code}`)
+      fetch(`https://disgithook-api.tomatenkuchen.com/login?code=${code}`, {
+        credentials: "include",
+      })
         .then((response) => {
           console.log(response);
         })
