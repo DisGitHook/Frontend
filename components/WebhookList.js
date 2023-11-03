@@ -74,7 +74,40 @@ export default function WebhookList(props) {
                 >
                   Regenerate Secret
                 </Button>
-                <Button colorScheme="red">Delete</Button>
+                <Button
+                  colorScheme="red"
+                  onClick={() => {
+                    fetch(
+                      `https://disgithook-api.tomatenkuchen.com/servers/${server}/hooks/${hook.id}`,
+                      {
+                        method: "DELETE",
+                        credentials: "include",
+                      }
+                    )
+                      .then((res) => res.json())
+                      .then((d) => {
+                        if (d.success) {
+                          Swal.fire({
+                            icon: "success",
+                            title: "Success!",
+                            text: "Webhook deleted successfully!",
+                          });
+                          window.location.reload();
+                        } else {
+                          Swal.fire({
+                            icon: "error",
+                            title: "Error!",
+                            text: "An error occured while deleting the webhook!",
+                          });
+                        }
+                      })
+                      .catch((error) => {
+                        router.push("/");
+                      });
+                  }}
+                >
+                  Delete
+                </Button>
               </HStack>
             </Td>
           </Tr>
