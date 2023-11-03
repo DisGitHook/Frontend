@@ -17,8 +17,8 @@ export default function Dashboard() {
 
   const [hooks, setHooks] = useState([]);
 
-  const fetchInfo = () => {
-    return fetch(
+  useEffect(() => {
+    fetch(
       `https://disgithook-api.tomatenkuchen.com/servers/${router.query.server}}/hooks`,
       {
         credentials: "include",
@@ -26,11 +26,7 @@ export default function Dashboard() {
     )
       .then((res) => res.json())
       .then((d) => setHooks(d.hooks));
-  };
-
-  useEffect(() => {
-    fetchInfo();
-  }, []);
+  }, [router]);
 
   return (
     <div>
