@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import Navbar from "../../../components/Navbar";
+import Navbar from "../../components/Navbar";
 import { Box, Container, Heading, Stack, Text } from "@chakra-ui/react";
-import ServerList from "../../../components/ServerList";
+import ServerList from "../../components/ServerList";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 
