@@ -31,7 +31,7 @@ export default function Dashboard() {
 
   const fetchInfo = () => {
     return fetch("https://disgithook-api.tomatenkuchen.com/servers", {
-      credentials: "same-origin",
+      credentials: "include",
     })
       .then((res) => res.json())
       .then((d) => setServers(d.servers));
