@@ -13,9 +13,11 @@ export default function Dashboard() {
   useEffect(() => {
     if (code) {
       fetch(`https://disgithook-api.tomatenkuchen.com/login?code=${code}`)
-        .then((response) => {})
+        .then((response) => {
+          console.log(response);
+        })
         .catch((error) => {
-          router.push("/");
+          console.log(error);
         });
     } else {
       const avatarCookie = Cookies.get("avatar");
