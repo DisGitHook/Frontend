@@ -19,7 +19,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetch(
-      `https://disgithook-api.tomatenkuchen.com/servers/${router.query.server}}/hooks`,
+      `https://disgithook-api.tomatenkuchen.com/servers/${router.query.server}/hooks`,
       {
         credentials: "include",
       }
