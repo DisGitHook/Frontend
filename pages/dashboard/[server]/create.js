@@ -96,6 +96,15 @@ export default function CreateWebhook() {
               <Divider />
               <Flex direction="row-reverse" py="4" px={{ base: "4", md: "6" }}>
                 <Button
+                  variant="secondary"
+                  onClick={() => {
+                    router.push(`/dashboard/${router.query.server}`);
+                  }}
+                  mr="4"
+                >
+                  Back
+                </Button>
+                <Button
                   onClick={() => {
                     let name = document.getElementById("webhook_name").value;
                     let type = document.querySelector(
@@ -146,7 +155,24 @@ export default function CreateWebhook() {
                       .then((res) => res.json())
                       .then((d) => {
                         if (d.success) {
-                          router.push(`/dashboard/${router.query.server}`);
+                          Swal.fire({
+                            icon: "success",
+                            title: "Success!",
+                            text: "Webhook created successfully!",
+                            html: `
+                                <b>Full POST URL:</b>
+                                <div style="text-align: left;">
+                                    <code>https://disgithook-api.tomatenkuchen.com/hook/${d.id}/${d.secret}</code>
+                                </div>
+                                <hr>
+                                <b>POST URL with secret in header:</b><br>
+                                <div style="text-align: left;">
+                                    <b>URL:</b>
+                                    <code>https://disgithook-api.tomatenkuchen.com/hook/${d.id}</code><br>
+                                    <b>Secret:</b> <code>${d.secret}</code>
+                                </div>
+                                `,
+                          });
                         } else {
                           Swal.fire({
                             icon: "error",
