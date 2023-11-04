@@ -9,7 +9,14 @@ import {
   Img,
   Stack,
   Text,
+  SimpleGrid,
+  Square,
+  Icon,
 } from "@chakra-ui/react";
+import Link from "next/link";
+import { BsStars } from "react-icons/bs";
+import { IoRocketSharp } from "react-icons/io5";
+import { FaPaintBrush } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -36,21 +43,34 @@ export default function Home() {
                   alignSelf="start"
                   size={{ base: "md", md: "lg" }}
                 >
-                  DisGitHook
+                  DisGitHook v1.0.0
                 </Badge>
                 <Stack
                   spacing={{ base: "4", md: "6" }}
                   maxW={{ md: "xl", lg: "md", xl: "xl" }}
                 >
-                  <Heading size={{ base: "md", md: "xl" }}>TITLE</Heading>
+                  <Heading size={{ base: "md", md: "xl" }}>DisGitHook</Heading>
                   <Text fontSize={{ base: "lg", md: "xl" }} color="fg.muted">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Start managing your github webhooks with ease.
                   </Text>
                 </Stack>
               </Stack>
               <Stack direction={{ base: "column", md: "row" }} spacing="3">
-                <Button size={{ base: "lg", md: "xl" }}>Dashboard</Button>
-                <Button variant="secondary" size={{ base: "lg", md: "xl" }}>
+                <Button
+                  size={{ base: "lg", md: "xl" }}
+                  as={Link}
+                  href={"/dashboard"}
+                >
+                  Dashboard
+                </Button>
+                <Button
+                  variant="secondary"
+                  size={{ base: "lg", md: "xl" }}
+                  as={"a"}
+                  href={
+                    "https://discord.com/api/oauth2/authorize?client_id=1168822115810672711&scope=bot"
+                  }
+                >
                   Invite Bot
                 </Button>
               </Stack>
@@ -68,10 +88,214 @@ export default function Home() {
               <Img
                 boxSize="full"
                 objectFit="cover"
-                src="https://picsum.photos/1920/1080"
-                alt="Lady at work"
+                src="https://i.imgur.com/MoAxv3O.png"
+                alt="DisGitHook"
               />
             </Box>
+          </Stack>
+        </Container>
+      </Box>
+      <Box as="section" bg="bg.surface">
+        <Container
+          py={{
+            base: "16",
+            md: "24",
+          }}
+        >
+          <Stack
+            spacing={{
+              base: "12",
+              md: "16",
+            }}
+          >
+            <Stack
+              spacing={{
+                base: "4",
+                md: "5",
+              }}
+              maxW="3xl"
+            >
+              <Stack spacing="3">
+                <Text
+                  fontSize={{
+                    base: "sm",
+                    md: "md",
+                  }}
+                  fontWeight="semibold"
+                  color="accent"
+                >
+                  Features
+                </Text>
+                <Heading
+                  size={{
+                    base: "sm",
+                    md: "md",
+                  }}
+                >
+                  What can you expect?
+                </Heading>
+              </Stack>
+              <Text
+                color="fg.muted"
+                fontSize={{
+                  base: "lg",
+                  md: "xl",
+                }}
+              >
+                The most important features of our bot.
+              </Text>
+            </Stack>
+            <SimpleGrid
+              columns={{
+                base: 1,
+                md: 2,
+                lg: 3,
+              }}
+              columnGap={8}
+              rowGap={{
+                base: 10,
+                md: 16,
+              }}
+            >
+              <Stack
+                spacing={{
+                  base: "4",
+                  md: "5",
+                }}
+              >
+                <Square
+                  size={{
+                    base: "10",
+                    md: "12",
+                  }}
+                  bg="accent"
+                  color="fg.inverted"
+                  borderRadius="lg"
+                >
+                  <Icon
+                    as={BsStars}
+                    boxSize={{
+                      base: "5",
+                      md: "6",
+                    }}
+                  />
+                </Square>
+                <Stack
+                  spacing={{
+                    base: "1",
+                    md: "2",
+                  }}
+                  flex="1"
+                >
+                  <Text
+                    fontSize={{
+                      base: "lg",
+                      md: "xl",
+                    }}
+                    fontWeight="medium"
+                  >
+                    Customizable Webhooks
+                  </Text>
+                  <Text color="fg.muted">
+                    Our bot allows you to create, configure, and customize
+                    webhooks for your GitHub repositories effortlessly. Tailor
+                    your notifications to suit your preferences.
+                  </Text>
+                </Stack>
+              </Stack>
+              <Stack
+                spacing={{
+                  base: "4",
+                  md: "5",
+                }}
+              >
+                <Square
+                  size={{
+                    base: "10",
+                    md: "12",
+                  }}
+                  bg="accent"
+                  color="fg.inverted"
+                  borderRadius="lg"
+                >
+                  <Icon
+                    as={IoRocketSharp}
+                    boxSize={{
+                      base: "5",
+                      md: "6",
+                    }}
+                  />
+                </Square>
+                <Stack
+                  spacing={{
+                    base: "1",
+                    md: "2",
+                  }}
+                  flex="1"
+                >
+                  <Text
+                    fontSize={{
+                      base: "lg",
+                      md: "xl",
+                    }}
+                    fontWeight="medium"
+                  >
+                    Real-time Updates
+                  </Text>
+                  <Text color="fg.muted">
+                    Stay in the loop with real-time notifications whenever there
+                    are new commits, issues, pull requests, or any other GitHub
+                    activity in your repositories.
+                  </Text>
+                </Stack>
+              </Stack>
+              <Stack
+                spacing={{
+                  base: "4",
+                  md: "5",
+                }}
+              >
+                <Square
+                  size={{
+                    base: "10",
+                    md: "12",
+                  }}
+                  bg="accent"
+                  color="fg.inverted"
+                  borderRadius="lg"
+                >
+                  <Icon
+                    as={FaPaintBrush}
+                    boxSize={{
+                      base: "5",
+                      md: "6",
+                    }}
+                  />
+                </Square>
+                <Stack
+                  spacing={{
+                    base: "1",
+                    md: "2",
+                  }}
+                  flex="1"
+                >
+                  <Text
+                    fontSize={{
+                      base: "lg",
+                      md: "xl",
+                    }}
+                    fontWeight="medium"
+                  >
+                    Advanced Templates
+                  </Text>
+                  <Text color="fg.muted">
+                    By default, our bot sends the messages using templates that
+                    are similar to Discord. However, you can customize the
+                    message per event-action combination to your liking.
+                  </Text>
+                </Stack>
+              </Stack>
+            </SimpleGrid>
           </Stack>
         </Container>
       </Box>

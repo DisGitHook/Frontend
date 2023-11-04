@@ -96,15 +96,6 @@ export default function CreateWebhook() {
               <Divider />
               <Flex direction="row-reverse" py="4" px={{ base: "4", md: "6" }}>
                 <Button
-                  variant="secondary"
-                  onClick={() => {
-                    router.push(`/dashboard/${router.query.server}`);
-                  }}
-                  mr="4"
-                >
-                  Back
-                </Button>
-                <Button
                   onClick={() => {
                     let name = document.getElementById("webhook_name").value;
                     let type = document.querySelector(
@@ -187,6 +178,15 @@ export default function CreateWebhook() {
                   }}
                 >
                   Create Webhook
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => {
+                    router.push(`/dashboard/${router.query.server}`);
+                  }}
+                  mr="4"
+                >
+                  Back
                 </Button>
               </Flex>
             </Box>
