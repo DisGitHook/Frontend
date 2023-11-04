@@ -1,25 +1,23 @@
 import Head from "next/head";
 import Navbar from "../../../components/Navbar";
 import {
-  Avatar,
   Box,
   Button,
   Divider,
   Flex,
   FormControl,
-  FormHelperText,
   Container,
   StackDivider,
   Text,
   FormLabel,
   Input,
   InputGroup,
-  InputLeftAddon,
   Radio,
   RadioGroup,
   Stack,
   Textarea,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
