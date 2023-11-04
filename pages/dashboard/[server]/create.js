@@ -21,8 +21,17 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import Swal from "sweetalert2";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
-export default function Privacy() {
+export default function CreateWebhook() {
+  const router = useRouter();
+  useEffect(() => {
+    const avatarCookie = Cookies.get("avatar");
+    if (!avatarCookie) {
+      router.push("/");
+    }
+  });
   return (
     <div>
       <Head>
@@ -126,7 +135,7 @@ export default function Privacy() {
                     }
 
                     fetch(
-                      `https://disgithook-api.tomatenkuchen.com/servers/${server}/hooks`,
+                      `https://disgithook-api.tomatenkuchen.com/servers/${router.query.server}/hooks`,
                       {
                         method: "POST",
                         credentials: "include",
@@ -139,7 +148,7 @@ export default function Privacy() {
                       .then((res) => res.json())
                       .then((d) => {
                         if (d.success) {
-                          router.push(`/dashboard/${server}`);
+                          router.push(`/dashboard/${router.query.server}`);
                         } else {
                           Swal.fire({
                             icon: "error",
